@@ -10,9 +10,15 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="NASIL OYNANIR" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Kelimeyi tahmin etmek için 6 hakkınız var. Her tahmin 5 harfli anlamlı
-        bir kelime olmalıdır. Göndermek için Tahmin Et'e basın. Her tahminden
-        sonra kutucukların renkleri tahmininizin yakınlığına göre değişecektir.
+        Kelimeyi tahmin etmek için 6 hakkınız var. </p>
+        <p  className="text-sm text-gray-500 dark:text-gray-300">
+        Her tahmin 5 harfli anlamlı bir kelime olmalıdır. 
+        </p>
+        <p   className="text-sm text-gray-500 dark:text-gray-300">
+        Tahmin için Enter'a basın. 
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-300">
+        Her tahminden sonra kutucukların renkleri tahmininizin yakınlığına göre değişecektir.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">

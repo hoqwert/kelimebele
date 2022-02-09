@@ -19,6 +19,7 @@ import {
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
+  ADS_TEXT
 } from './constants/strings'
 import {
   MAX_WORD_LENGTH,
@@ -205,6 +206,7 @@ function App() {
         currentGuess={currentGuess}
         isRevealing={isRevealing}
       />
+      {(!isGameLost && !isGameWon) && (
       <Keyboard
         onChar={onChar}
         onDelete={onDelete}
@@ -212,6 +214,7 @@ function App() {
         guesses={guesses}
         isRevealing={isRevealing}
       />
+      )}
       <InfoModal
         isOpen={isInfoModalOpen}
         handleClose={() => setIsInfoModalOpen(false)}
@@ -233,14 +236,22 @@ function App() {
         handleClose={() => setIsAboutModalOpen(false)}
       />
       {(isGameLost || isGameWon) && (
+        <div className="ml-4 mr-4">
         <button
-          type="button"
-          className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
-          onClick={setNewGame}
-          id="btnNewGame"
-        >
-          {NEW_GAME}
-        </button>
+            type="button"
+            className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm"
+            onClick={setNewGame}
+            id="btnNewGame"
+          >
+            {NEW_GAME}
+          </button>
+          </div>
+      )}
+      {(isGameLost && isGameWon) && (
+          <div className="text-xs mt-4 ml-4 mr-4">
+            <a className="text-s text-orange-600 underline"  href="http://onelink.to/m9tdww">Brifing</a> uygulaması ile
+            {ADS_TEXT}
+          </div>
       )}
       <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
       <Alert
