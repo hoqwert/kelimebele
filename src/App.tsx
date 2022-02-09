@@ -41,10 +41,13 @@ function App() {
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
-
+console.log(localStorage.getItem('firstGamePlayed'))
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(
+    localStorage.getItem('firstGamePlayed')
+      ? false
+      : true)
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
@@ -90,7 +93,7 @@ function App() {
   }
 
   useEffect(() => {
-    saveGameStateToLocalStorage({ guesses, solution })
+    saveGameStateToLocalStorage({ guesses, solution})
   }, [guesses])
 
   useEffect(() => {
@@ -111,6 +114,8 @@ function App() {
         setIsStatsModalOpen(true)
       }, ALERT_TIME_MS)
     }
+
+    localStorage.setItem('firstGamePlayed', 'true')
   }, [isGameWon, isGameLost])
 
   const onChar = (value: string) => {

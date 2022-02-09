@@ -17,8 +17,7 @@ export const loadGameStateFromLocalStorage = () => {
 export const setNewGame = () => {
   const empty = {} as StoredGameState
   saveGameStateToLocalStorage(empty)
-  const loaded = loadGameStateFromLocalStorage()
-  console.table(loaded)
+  loadGameStateFromLocalStorage()
   window.location.reload()
 }
 
