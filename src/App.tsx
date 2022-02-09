@@ -41,7 +41,6 @@ function App() {
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
-console.log(localStorage.getItem('firstGamePlayed'))
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(
@@ -52,6 +51,7 @@ console.log(localStorage.getItem('firstGamePlayed'))
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
+  const [isGameFinish, setIsGameFinish] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
@@ -99,6 +99,7 @@ console.log(localStorage.getItem('firstGamePlayed'))
   useEffect(() => {
     if (isGameWon) {
       setTimeout(() => {
+        setIsGameFinish(true)
         setSuccessAlert(
           WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
         )
@@ -111,6 +112,7 @@ console.log(localStorage.getItem('firstGamePlayed'))
     }
     if (isGameLost) {
       setTimeout(() => {
+        setIsGameFinish(true)
         setIsStatsModalOpen(true)
       }, ALERT_TIME_MS)
     }
@@ -239,11 +241,11 @@ console.log(localStorage.getItem('firstGamePlayed'))
         isOpen={isAboutModalOpen}
         handleClose={() => setIsAboutModalOpen(false)}
       />
-      {(isGameLost || isGameWon) && (
-        <div className="ml-4 mr-4">
+      {isGameFinish && (
+        <div className="flex justify-center mb-1">
         <button
             type="button"
-            className="mt-2 w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm"
+            className="mt-2 rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm"
             onClick={setNewGame}
             id="btnNewGame"
           >
@@ -251,7 +253,7 @@ console.log(localStorage.getItem('firstGamePlayed'))
           </button>
           </div>
       )}
-      {(isGameLost && isGameWon) && (
+      {false  && (
           <div className="text-xs mt-4 ml-4 mr-4">
             <a className="text-s text-orange-600 underline"  href="http://onelink.to/m9tdww">Brifing</a> uygulaması ile
             {ADS_TEXT}
