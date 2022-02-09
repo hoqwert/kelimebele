@@ -39,7 +39,6 @@ export const StatsModal = ({
         isOpen={isOpen}
         handleClose={handleClose}
       >
-        <StatBar gameStats={gameStats} />
       </BaseModal>
     )
   }
