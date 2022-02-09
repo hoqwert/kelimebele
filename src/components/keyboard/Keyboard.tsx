@@ -37,8 +37,8 @@ export const Keyboard = ({
       } else if (e.code === 'Backspace') {
         onDelete()
       } else {
-        const key = e.key.toUpperCase()
-        if (key.length === 1 && key >= 'A' && key <= 'Z') {
+        const key = e.key.toLocaleUpperCase('tr-TR')
+        if (key.length === 1 && ((key >= 'A' && key <= 'Z') || key === 'İ' || key === 'Ş' || key === 'Ü' || key === 'Ğ' || key === 'Ç' || key === 'Ö' )) {
           onChar(key)
         }
       }

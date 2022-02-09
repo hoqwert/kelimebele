@@ -61,7 +61,6 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    console.table(loaded)
     if (loaded?.solution !== solution) {
       return []
     }
