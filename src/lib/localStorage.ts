@@ -21,7 +21,9 @@ export const setNewGame = () => {
   window.location.reload()
 }
 
-const gameStatKey = 'gameStats'
+const nowDate = new Date()
+const dateKey = nowDate.getFullYear() + nowDate.getMonth() + nowDate.getDate()
+const gameStatKey = 'gameStats' + dateKey
 
 export type GameStats = {
   winDistribution: number[]
@@ -33,6 +35,7 @@ export type GameStats = {
 }
 
 export const saveStatsToLocalStorage = (gameStats: GameStats) => {
+  
   localStorage.setItem(gameStatKey, JSON.stringify(gameStats))
 }
 
