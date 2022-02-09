@@ -1,10 +1,10 @@
 import { getGuessStatuses } from './statuses'
-import { solutionIndex } from './words'
+import { solutionIndex, solution } from './words'
 import { GAME_TITLE } from '../constants/strings'
 
 export const shareStatus = (guesses: string[], lost: boolean) => {
   navigator.clipboard.writeText(
-    `${GAME_TITLE} ${solutionIndex} ${lost ? 'X' : guesses.length}/6\n\n` +
+    `${GAME_TITLE} ${solution} ${lost ? 'X' : guesses.length}/6\n\n` +
       generateEmojiGrid(guesses)
   )
 }
